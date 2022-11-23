@@ -1,11 +1,24 @@
+  import {useState} from 'react';
 import Container from "react-bootstrap/Container";
 import './ItemListContainer.css';
+import ItemList from './ItemList';
 
 
-const ItemListContainer = ({greeting}) => {
+const ItemListContainer = () => {
+    
+    const [products, setProducts] = useState([]);
+
+    const productList = new Promise((resolve) =>
+    setTimeout(() => {
+        resolve();
+    }, 2000)
+    );
+    
+    productList.then((data)=>setProducts(data))
+    
     return (
-        <Container ClassName="greeting">
-            <p>{greeting}</p>
+        <Container>
+            <ItemList products={products}/>
         </Container>
 
     )
