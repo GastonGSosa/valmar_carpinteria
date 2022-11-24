@@ -17,7 +17,7 @@ function ItemDetail({product}) {
         <ListGroup.Item>STOCK: {product.stock}</ListGroup.Item>
       </ListGroup>
       <Card.Text>
-          $: {product.price}
+          Price: ${product.price}
         </Card.Text>
     </Card>
     ))
