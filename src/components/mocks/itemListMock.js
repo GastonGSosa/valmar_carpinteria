@@ -13,6 +13,7 @@ export const productArray = [
       stock: 5,
       img: escritorio,
       price: 25000,
+      category: "Muebles"
     },
     {
       id: "2",
@@ -21,6 +22,7 @@ export const productArray = [
       stock: 2,
       img: rack,
       price: 12000,
+      category: "Muebles"
     },
     {
       id: "3",
@@ -29,21 +31,24 @@ export const productArray = [
       stock: 6,
       img: alhajero,
       price: 5000,
+      category: "Adornos"
     },
     {
-        id: "4",
-        name: "Jenga",
-        description: "Jenga y caja de Nogal",
-        stock: 6,
-        img: jenga,
-        price: 5500,
+      id: "4",
+      name: "Jenga",
+      description: "Jenga y caja de Nogal",
+      stock: 6,
+      img: jenga,
+      price: 5500,
+      category: "Adornos"
     },
     {
-        id: "5",
-        name: "Tabla de Picar",
-        description: "Tabla de picar, hecha de Alamo, Nogal y Ebano",
-        stock: 6,
-        img: tablaDePicar,
-        price: 6000,
+      id: "5",
+      name: "Tabla de Picar",
+      description: "Tabla de picar, hecha de Alamo, Nogal y Ebano",
+      stock: 6,
+      img: tablaDePicar,
+      price: 6000,
+      category: "Cocina"
       }
   ];
