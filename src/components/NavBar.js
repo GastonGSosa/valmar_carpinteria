@@ -6,7 +6,7 @@ const NavBar = () => {
     return (
         <Navbar bg="dark" variant="dark">
         <Container>
-          <Navbar.Brand href="#home">Valmar Carpinteria</Navbar.Brand>
+          <Navbar.Brand href="/">Valmar Carpinteria</Navbar.Brand>
           <Nav className="me-auto">
             <Link to="/">Home</Link>
             <Link to="/category/Muebles">Muebles</Link>

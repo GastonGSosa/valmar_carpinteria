@@ -1,31 +1,21 @@
-import Container from 'react-bootstrap/Container';
 import ItemDetail from './ItemDetail';
 import { productArray } from './mocks/itemListMock';
-import {useState, useEffect, useParams} from 'react';
+import {useState, useEffect} from 'react';
+import {useParams} from 'react-router-dom';
 
 
 
 const ItemDetailContainer = () => {
+    const [product, setProduct] = useState(null)
+    const { id }= useParams();
 
-    const {id}=useParams();
-
-     const [product, setProduct] = useState(null)
+    
 
      useEffect(() => {
-        new Promise (
-          (resolve)=> 
-              setTimeout(()=>{
-                  resolve(productArray)
-              }, 2000)
-          ).then((data)=> {
-              if (id) {
-                  const  ids = data.find(
-                      (item)=> item.id ===id)
-                  setProduct(ids)
-              } else {
-                  setProduct(data)
-              }
-          })
+        new Promise((resolve) =>
+          // Simulation of a call to an api
+          setTimeout(() => resolve(productArray.find((product) => product.id === id)), 1000)
+        ).then((data) => setProduct(data));
       }, [id]);
     
 
@@ -36,9 +26,9 @@ const ItemDetailContainer = () => {
     );}
     else {
         return (
-            <Container>
+            <div className="flex justify-center items-center">
                 <ItemDetail product={product} />
-            </Container>
+            </div>
         
         );
     }
