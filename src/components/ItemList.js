@@ -6,11 +6,11 @@ const ItemList = ({products}) => {
 
 
     return (
-        <ul className="d-flex items-center justify-content-center gap-4">
+        <div className="d-flex items-center justify-content-center gap-4">
             {products.map((products)=>(
                 <Item products={products}/> 
             ))}
-        </ul>
+        </div>
     )
 
 };

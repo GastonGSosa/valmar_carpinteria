@@ -16,7 +16,7 @@ const ItemListContainer = () => {
         (resolve)=> 
             setTimeout(()=>{
                 resolve(productArray)
-            }, 2000)
+            }, 1500)
         ).then((data)=> {
             if (category) {
                 const categories = data.filter(

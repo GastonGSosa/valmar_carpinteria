@@ -1,9 +1,11 @@
+import { Container } from 'react-bootstrap';
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
+import ItemCount from './ItemCount';
 
 function ItemDetail({product}) {
   return (
-    <div className="d-flex justify-content-center">
+    <Container className="d-flex justify-content-center">
       <Card style={{ width: '18rem' }}>
         <Card.Img variant="top" src={product.img}/>
         <Card.Body>
@@ -14,12 +16,13 @@ function ItemDetail({product}) {
         </Card.Body>
         <ListGroup className="list-group-flush">
           <ListGroup.Item>STOCK: {product.stock}</ListGroup.Item>
+          <ListGroup.Item>Price: ${product.price}</ListGroup.Item>
         </ListGroup>
-        <Card.Text>
-          Price: ${product.price}
-        </Card.Text>
+        <ListGroup className="list-group-flush">
+          <ListGroup.Item><ItemCount producto={product}/></ListGroup.Item>
+        </ListGroup>
       </Card>
-    </div>
+    </Container>
     
 
 
