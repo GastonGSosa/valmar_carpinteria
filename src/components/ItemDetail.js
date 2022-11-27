@@ -3,7 +3,7 @@ import ListGroup from 'react-bootstrap/ListGroup';
 
 function ItemDetail({product}) {
   return (
-
+    <div className="d-flex justify-content-center">
       <Card style={{ width: '18rem' }}>
         <Card.Img variant="top" src={product.img}/>
         <Card.Body>
@@ -19,6 +19,7 @@ function ItemDetail({product}) {
           Price: ${product.price}
         </Card.Text>
       </Card>
+    </div>
     
 
 
