@@ -32,8 +32,8 @@ const ItemListContainer = () => {
         return(<p>Loading...</p>)
     }    
     return (
-        <Container className="h-full">
-            <ItemList products={products}/>
+        <Container className="h-full mx-auto">
+            <ItemList products={products} />
         </Container>
 
     )

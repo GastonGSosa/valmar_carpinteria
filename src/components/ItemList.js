@@ -6,9 +6,9 @@ const ItemList = ({products}) => {
 
 
     return (
-        <div className="d-flex items-center justify-content-center gap-4">
+        <div className="d-flex flex-wrap items-center justify-content-center gap-4">
             {products.map((products)=>(
-                <Item products={products}/> 
+                <Item products={products} key={products.id}/> 
             ))}
         </div>
     )

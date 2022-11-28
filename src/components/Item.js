@@ -10,7 +10,7 @@ const Item = ({products}) => {
     }
 
     return (
-        <Card style={{ width: '18rem' }} onClick={handleNavigate }>
+        <Card style={{ width: '22rem' }} onClick={handleNavigate }>
             <Card.Img variant="top" src={products.img} />
             <Card.Body>
                 <Card.Title>{products.name}</Card.Title>

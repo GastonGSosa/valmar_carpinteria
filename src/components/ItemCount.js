@@ -1,37 +1,20 @@
-import {useState} from 'react';
 import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 
-const ItemCount = ({producto}) => {
-    const [quantity, setQuantity] = useState(0)
-
-    
-
-    const incrementQty = () => {
-        if (quantity < producto.stock) {
-            setQuantity(prevQuantity=>prevQuantity+1)
-        }
-    };
-
-    const decrementQty = () => {
-        if (quantity>0) {
-            setQuantity(prevQuantity=>prevQuantity-1)
-        }
-        
-    }
+export const ItemCount = ({qty, incrementQty, decrementQty,addToCart, cartCounter}) => {
 
     return (
         <div>
-            <ButtonGroup>
-                <Button onClick={decrementQty} variant="secondary">-</Button>
-                <span className="inline-block">Cantidad: {quantity}</span>
-                <Button onClick={incrementQty} variant="secondary">+</Button>
+            <ButtonGroup className="d-flex justify-content-center">
+                <Button variant="secondary" size="sm" onClick={decrementQty}>-</Button>
+                <span className="w-70">Cantidad:{qty}</span>
+                <Button variant="secondary" size="sm" onClick={incrementQty}>+</Button>
             </ButtonGroup>
-            <Button variant="primary">Agregar al Carrito!</Button>
+            <div className="d-flex justify-items-center"><span> Items para agregar: {cartCounter}</span></div>
+            <br/>
+            <Button variant="primary" size="lg" onClick={addToCart}>Agregar al Carrito!</Button>
         </div>
 
     );
 
 }
-
-export default ItemCount;
