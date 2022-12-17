@@ -9,7 +9,7 @@ import { CartContext } from '../context/CartContext';
 
 const ItemDetail = ({product}) => {
 
-
+  const {addItem} = useContext(CartContext)
   const [qty,setQty] = useState(0);
   const [stock, setStock] = useState(product.stock)
   const [cartCounter, setCartCounter] = useState(0)
@@ -18,7 +18,7 @@ const ItemDetail = ({product}) => {
     if (stock > 0 && qty < stock) {
       setQty(qty => qty +=1)
     }
-  };
+  }; 
 
   function decrementQty () {
     if (stock > 1 && qty>0) {

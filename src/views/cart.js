@@ -7,5 +7,4 @@ const CartView = () => {
         </Layout>
     )
 };
-
-export default CartView;       
+export default CartView;

@@ -11,7 +11,7 @@ const Item = ({products}) => {
 
     return (
         <Card style={{ width: '22rem' }} onClick={handleNavigate }>
-            <Card.Img variant="top" src={products.img} />
+            <Card.Img variant="top" src={"../assets/images/"+products.img} />
             <Card.Body>
                 <Card.Title>{products.name}</Card.Title>
                 <Card.Text>{products.description}</Card.Text>
