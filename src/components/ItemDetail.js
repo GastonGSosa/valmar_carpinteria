@@ -9,7 +9,7 @@ import { CartContext } from '../context/CartContext';
 
 const ItemDetail = ({product}) => {
 
-  const {addItem} = useContext(CartContext)
+  const {addItem, isInCart, log} = useContext(CartContext);
   const [qty,setQty] = useState(0);
   const [stock, setStock] = useState(product.stock)
   const [cartCounter, setCartCounter] = useState(0)
@@ -26,16 +26,14 @@ const ItemDetail = ({product}) => {
     }
   };
 
-  function addToCart() {
+  function addToCart(product) {
     if (stock < 1 && qty>0) {
       alert("No hay stock del producto seleccionado")
     } else if (qty===0) {
       alert("NADA QUE AGREGAR")
     } else {
       setStock(stock=>stock - qty)
-      setCartCounter(cartCounter => cartCounter + qty)
-      console.log(cartCounter)
-      setQty(0)
+      log();
     };
   }
   const Navigate = useNavigate();

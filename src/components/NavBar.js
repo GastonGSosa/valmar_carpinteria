@@ -9,9 +9,9 @@ const NavBar = () => {
           <Navbar.Brand href="/">Valmar Carpinteria</Navbar.Brand>
           <Nav className="me-auto">
             <Nav.Link as={Link} to="/" >Home</Nav.Link>
-            <Nav.Link as={Link} to="/category/Muebles">Muebles</Nav.Link>
-            <Nav.Link as={Link} to="/category/Adornos">Adornos</Nav.Link>
-            <Nav.Link as={Link} to="/category/Cocina">Cocina</Nav.Link>
+            <Nav.Link as={Link} to="/category/muebles">Muebles</Nav.Link>
+            <Nav.Link as={Link} to="/category/adornos">Adornos</Nav.Link>
+            <Nav.Link as={Link} to="/category/cocina">Cocina</Nav.Link>
           </Nav>
           <Nav.Link as={Link} to="/cart/">
             <CartWidget/>

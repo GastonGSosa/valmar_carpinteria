@@ -1,10 +1,20 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useState, useEffect } from "react";
 
 export const CartContext= createContext([]); 
 
 export const CartContextProvider = ({children}) => {
     // Estados, funciones, hooks, etc.
     const [productsIn, setProductsIn] = useState([]);
+    const [totalAmount, setTotalAmount] = useState(0);
+
+    useEffect(
+        ()=> {
+            const amount = productsIn
+            .map( (product)=> parseInt(product.item.price)*product.quantityIn)
+            .reduce((partialSum, a)=> partialSum + a, 0);
+            setTotalAmount(amount);
+            }
+        )
 
 
     function addItem(item, quantity) {
@@ -25,8 +35,10 @@ export const CartContextProvider = ({children}) => {
 
         } else {
             setProductsIn(
-                (prevState) => prevState.concat({item, quantityAdded: quantity})
+                (prevState) => prevState.concat({item, quantityIn: quantity})
+
             );
+            console.log(productsIn)
         }
 
     };
@@ -48,9 +60,13 @@ export const CartContextProvider = ({children}) => {
         return Boolean(productsIn.find((product)=> product.item.id === id));
     };
 
+    function log () {
+        console.log("la concha de tumadre")
+    }
+
 
     return (
-        <CartContext.Provider value={{addItem, removeItem, clear, isInCart, productsIn}}>
+        <CartContext.Provider value={{addItem, removeItem, clear, isInCart, productsIn, totalAmount,log}}>
             {children}
         </CartContext.Provider>
     )

@@ -20,8 +20,9 @@ export const useGetItem = () => {
                     setData(
                         result.docs.map( (doc) => ({id: doc.id, ...doc.data() })  )
 
-                    ));
-            return
+                    )
+                    );
+            return;
         }
 
         //if we clicked in a item resulting in a ID in the browser (primer metodo de firebase que vimos en clase)
@@ -48,7 +49,7 @@ export const useGetItem = () => {
                     )
                 )
             }
-        }, [category,id,ref]
+        }, [category]
     );
     return data;
 }
