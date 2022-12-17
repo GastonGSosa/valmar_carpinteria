@@ -5,6 +5,18 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {RouterProvider} from 'react-router-dom';
 import {router} from './router';
+import { initializeApp } from "firebase/app";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBh_1QrqgjP5a6SEsAUSHHOkroT9Jat71Q",
+  authDomain: "valmar-carpinteria.firebaseapp.com",
+  projectId: "valmar-carpinteria",
+  storageBucket: "valmar-carpinteria.appspot.com",
+  messagingSenderId: "488143722969",
+  appId: "1:488143722969:web:f448e58b9d656ec014a1c8"
+};
+
+initializeApp(firebaseConfig);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
