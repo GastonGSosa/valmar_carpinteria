@@ -8,7 +8,11 @@ const CartView = () => {
 
     const navigate = useNavigate();
     const {productsIn, clear} = useContext(CartContext);
-    
+
+
+    const finalizeShopping = () => {
+        
+        }
 
 
 

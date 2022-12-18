@@ -1,7 +1,6 @@
 import React, { createContext, useState, useEffect } from "react";
 
 export const CartContext= createContext([]); 
-
 export const CartContextProvider = ({children}) => {
     // Estados, funciones, hooks, etc.
     const [productsIn, setProductsIn] = useState([]);
@@ -13,7 +12,7 @@ export const CartContextProvider = ({children}) => {
             .map( (product)=> parseInt(product.item.price)*product.quantityIn)
             .reduce((partialSum, a)=> partialSum + a, 0);
             setTotalAmount(amount);
-            }
+            },[productsIn]
         )
 
 
@@ -25,22 +24,20 @@ export const CartContextProvider = ({children}) => {
                     (productIn) => productIn.item.id === item.id ? 
                     {
                         ...productIn,
-                        quantityIn: productIn.quantityIn + quantity
+                        quantityIn: productIn.quantityIn + quantity,
                     }:{
                         productIn
                     }
                 )
 
-            )
+            );
 
         } else {
             setProductsIn(
                 (prevState) => prevState.concat({item, quantityIn: quantity})
 
             );
-            console.log(productsIn)
         }
-
     };
 
     function removeItem(id) {

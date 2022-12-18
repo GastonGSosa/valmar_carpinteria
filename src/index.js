@@ -1,12 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {RouterProvider} from 'react-router-dom';
 import {router} from './router';
 import { initializeApp } from "firebase/app";
-
+import { CartContextProvider } from './context/CartContext';
 const firebaseConfig = {
   apiKey: "AIzaSyBh_1QrqgjP5a6SEsAUSHHOkroT9Jat71Q",
   authDomain: "valmar-carpinteria.firebaseapp.com",
@@ -21,7 +20,9 @@ initializeApp(firebaseConfig);
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router}/>
+    <CartContextProvider>
+      <RouterProvider router={router}/>
+    </CartContextProvider>
   </React.StrictMode>
 );
 

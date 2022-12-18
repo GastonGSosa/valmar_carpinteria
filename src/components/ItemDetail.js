@@ -9,7 +9,7 @@ import { CartContext } from '../context/CartContext';
 
 const ItemDetail = ({product}) => {
 
-  const {addItem, isInCart, log} = useContext(CartContext);
+  const {addItem, isInCart} = useContext(CartContext);
   const [qty,setQty] = useState(0);
   const [stock, setStock] = useState(product.stock)
   const [cartCounter, setCartCounter] = useState(0)
@@ -33,7 +33,7 @@ const ItemDetail = ({product}) => {
       alert("NADA QUE AGREGAR")
     } else {
       setStock(stock=>stock - qty)
-      log();
+      addItem(product, qty);
     };
   }
   const Navigate = useNavigate();
