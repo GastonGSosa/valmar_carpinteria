@@ -3,45 +3,41 @@ import React, { createContext, useState, useEffect } from "react";
 export const CartContext= createContext([]); 
 export const CartContextProvider = ({children}) => {
     // Estados, funciones, hooks, etc.
-    const [productsIn, setProductsIn] = useState([]);
+    const [productsAdded, setProductsAdded] = useState([]);
     const [totalAmount, setTotalAmount] = useState(0);
 
     useEffect(
         ()=> {
-            const amount = productsIn
-            .map( (product)=> parseInt(product.item.price)*product.quantityIn)
+            const amount = productsAdded
+            .map( (product)=> parseInt(product.item.price)*product.quantity)
             .reduce((partialSum, a)=> partialSum + a, 0);
             setTotalAmount(amount);
-            },[productsIn]
+            },[productsAdded]
         )
 
 
     function addItem(item, quantity) {
-        const alreadyIn = isInCart(item.id);
-        if (alreadyIn) {
-            setProductsIn(
-                (prevState) => prevState.map(
-                    (productIn) => productIn.item.id === item.id ? 
-                    {
-                        ...productIn,
-                        quantityIn: productIn.quantityIn + quantity,
-                    }:{
-                        productIn
+        const isAlreadyAdded = isInCart(item.id);
+        if (isAlreadyAdded) {
+            setProductsAdded((prevState) =>
+            prevState.map((productAdded) =>
+                productAdded.item.id === item.id
+                ? {
+                    ...productAdded,
+                    quantityAdded: productAdded.quantityAdded + quantity,
                     }
-                )
-
+                : productAdded
+            )
             );
-
         } else {
-            setProductsIn(
-                (prevState) => prevState.concat({item, quantityIn: quantity})
-
+            setProductsAdded((prevState) =>
+            prevState.concat({ item, quantityAdded: quantity })
             );
         }
-    };
+        }
 
     function removeItem(id) {
-        setProductsIn(
+        setProductsAdded(
             (prevState) => (
                 prevState.filter( (product) => product.item.id !== id )
             )
@@ -49,21 +45,16 @@ export const CartContextProvider = ({children}) => {
     };
 
     function clear () {
-        setProductsIn([]);
+        setProductsAdded([]);
 
     };
 
     function isInCart (id) {
-        return Boolean(productsIn.find((product)=> product.item.id === id));
+        return Boolean(productsAdded.find((product)=> product.item.id === id));
     };
 
-    function log () {
-        console.log("la concha de tumadre")
-    }
-
-
     return (
-        <CartContext.Provider value={{addItem, removeItem, clear, isInCart, productsIn, totalAmount,log}}>
+        <CartContext.Provider value={{addItem, removeItem, clear, isInCart, productsAdded, totalAmount}}>
             {children}
         </CartContext.Provider>
     )

@@ -5,62 +5,76 @@ import {ItemCount} from './ItemCount';
 import {useState, useContext} from "react";
 import {useNavigate} from "react-router-dom"
 import { CartContext } from '../context/CartContext';
+import { useGetItemImg } from '../hooks/useGetItemImg';
+import { Loading } from './Loading';
 
 
-const ItemDetail = ({product}) => {
+const ItemDetail = ({item}) => {
 
-  const {addItem, isInCart} = useContext(CartContext);
-  const [qty,setQty] = useState(0);
-  const [stock, setStock] = useState(product.stock)
+  const {addItem, productsAdded} = useContext(CartContext);
+  const [itemCounter, setItemCounter] = useState(1)
+  const [stock, setStock] = useState(item.stock)
   const [cartCounter, setCartCounter] = useState(0)
+  const img = useGetItemImg(item.img);
 
-  function incrementQty () {
-    if (stock > 0 && qty < stock) {
-      setQty(qty => qty +=1)
+  function handlePlus () {
+    if (item.stock > 0 && item.stock > itemCounter) {
+      setItemCounter(itemCounter + 1)
     }
-  }; 
+  }
 
-  function decrementQty () {
-    if (stock > 1 && qty>0) {
-      setQty(qty => qty-=1)
-    }
-  };
-
-  function addToCart(product) {
-    if (stock < 1 && qty>0) {
-      alert("No hay stock del producto seleccionado")
-    } else if (qty===0) {
-      alert("NADA QUE AGREGAR")
+  function handleMinus () {
+    if (itemCounter>0) {
+      setItemCounter(itemCounter - 1)
     } else {
-      setStock(stock=>stock - qty)
-      addItem(product, qty);
+      alert("No hay menos que cero.")
+    }
+  }
+
+  function addToCart() {
+    if (itemCounter<1) {
+      alert("NADA QUE AGREGAR")
+    } else if (item.stock < 1) {
+      alert("No Hay Stock")
+    } else {
+      addItem(item, itemCounter);
+      setCartCounter(cartCounter => cartCounter + itemCounter)
     };
   }
   const Navigate = useNavigate();
   const goToCart = () => {
+    console.log(productsAdded)
     Navigate('/cart/')
   }
 
   
   
-  
+  if (!img) {
+    return <Loading/>
+  }
   
   return (
       <Container className="d-flex justify-content-center">
         <Card style={{ width: '32rem' }}>
-          <Card.Img variant="top" src={product.img}/>
+          <Card.Img variant="top" src={img}/>
           <Card.Body>
-            <Card.Title>{product.name}</Card.Title>
+            <Card.Title>{item.name}</Card.Title>
             <Card.Text>
-              {product.description}
+              {item.description}
             </Card.Text>
           </Card.Body>
           <ListGroup className="list-group-flush">
             <ListGroup.Item>STOCK: {stock}</ListGroup.Item>
-            <ListGroup.Item>Price: ${product.price}</ListGroup.Item>
+            <ListGroup.Item>Price: ${item.price}</ListGroup.Item>
           </ListGroup>
           <ListGroup className="list-group-flush">
-            <ListGroup.Item><ItemCount qty={qty} incrementQty={incrementQty} decrementQty={decrementQty} addToCart={addToCart} cartCounter={cartCounter}/></ListGroup.Item>
+            <ListGroup.Item><ItemCount 
+                              itemCounter={itemCounter} 
+                              handlePlus={handlePlus} 
+                              handleMinus={handleMinus} />
+            <Button onClick={addToCart}>AGREGAR AL CARRITO</Button>
+            </ListGroup.Item>
+
             <ListGroup.Item className="d-flex justify-items-center"><Button size="btn btn-lg" onClick={goToCart}>Finalizar Compra!</Button></ListGroup.Item>
           </ListGroup>
         </Card>

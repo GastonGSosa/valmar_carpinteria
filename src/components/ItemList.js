@@ -1,8 +1,8 @@
-import Item from './Item';
+import {Item} from './Item';
 
 
 
-const ItemList = ({products}) => {
+export const ItemList = ({products}) => {
 
 
     return (
@@ -14,5 +14,3 @@ const ItemList = ({products}) => {
     )
 
 };
-
-export default ItemList;
