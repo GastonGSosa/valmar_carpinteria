@@ -27,7 +27,7 @@ export const Item = ({ products, quantityAdded }) => {
             <Card.Body>
                 <Card.Title>{title}</Card.Title>
                 <Card.Text>{description}</Card.Text>
-                <Button variant="primary" onClick={handleNavigate}>Lo quiero!</Button>
+                <Button variant="dark" onClick={handleNavigate}>Lo quiero!</Button>
             </Card.Body>
         </Card>
   );

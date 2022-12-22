@@ -5,7 +5,6 @@ export const CartContextProvider = ({children}) => {
     // Estados, funciones, hooks, etc.
     const [productsAdded, setProductsAdded] = useState([]);
     const [totalAmount, setTotalAmount] = useState(0);
-    const [totalQuantity, setTotalQuantity] = useState(0);
 
     useEffect(() => {
         const amount = productsAdded
