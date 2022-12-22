@@ -12,14 +12,17 @@ import { Loading } from './Loading';
 const ItemDetail = ({item}) => {
 
   const {addItem, productsAdded} = useContext(CartContext);
-  const [itemCounter, setItemCounter] = useState(1)
+  const [itemCounter, setItemCounter] = useState(0)
   const [stock, setStock] = useState(item.stock)
   const [cartCounter, setCartCounter] = useState(0)
   const img = useGetItemImg(item.img);
 
   function handlePlus () {
-    if (item.stock > 0 && item.stock > itemCounter) {
+    if (stock > 0 && stock > itemCounter) {
       setItemCounter(itemCounter + 1)
+    }
+    else if (stock === 0 ){
+      alert("No hay mas stock!")
     }
   }
 
@@ -39,6 +42,8 @@ const ItemDetail = ({item}) => {
     } else {
       addItem(item, itemCounter);
       setCartCounter(cartCounter => cartCounter + itemCounter)
+      setStock(stock-itemCounter)
+      setItemCounter(0)
     };
   }
   const Navigate = useNavigate();

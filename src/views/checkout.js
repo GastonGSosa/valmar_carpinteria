@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Layout } from "../components/Layout";
 import { CartContext } from "../context/CartContext";
+import {Button, Form, Col, Row} from "react-bootstrap";
 
 // firebase
 import {
@@ -76,37 +77,31 @@ const CheckoutView = () => {
 
   return (
     <Layout>
-      <form onSubmit={handleFinalizePurchase} className="flex flex-col w-1/2">
-        <div className="flex flex-col">
-          <input
-            className="h-8 pl-4 mb-4 rounded-md"
-            placeholder="Nombre Completo"
-            required
-          />
-          <input
-            className="h-8 pl-4 mb-4 rounded-md"
-            placeholder="Numero de Telefono"
-            type="number"
-            required
-          />
-          <input
-            className="h-8 pl-4 mb-4 rounded-md"
-            placeholder="Email"
-            type={"email"}
-            required
-          />
-        </div>
-        <span>
-          Total a pagar: <strong>${totalAmount}</strong>
-        </span>
-        <button
-          type="submit"
-          className="rounded-lg p-2 bg-gray-800 text-white disabled:opacity-50"
-          disabled={isLoading}
-        >
-          Finalizar
-        </button>
-      </form>
+        <h2>Complete con sus datos para finalizar el pedido!</h2>
+        <Form onSubmit={handleFinalizePurchase}>
+            <Row className="mb-3">
+                <Form.Group as={Col} controlId="formGridName">
+                <Form.Label>Nombre</Form.Label>
+                <Form.Control type="name" placeholder="Lionel Messi" />
+                </Form.Group>
+
+            </Row>
+
+            <Form.Group className="mb-3" controlId="formGridNumber">
+                <Form.Label>Numero de telefono</Form.Label>
+                <Form.Control type="number" placeholder="+54 011 1234 5678" />
+            </Form.Group>
+
+            <Form.Group className="mb-3" controlId="formGridEmail">
+                <Form.Label>email</Form.Label>
+                <Form.Control type={"email"} placeholder="algo@valmarcarpinteria.com" />
+            </Form.Group>
+
+            <h3>Total de la compra: ${totalAmount}</h3>
+            <Button variant="primary" type="submit" disabled={isLoading}>
+                Submit
+            </Button>
+            </Form>
     </Layout>
   );
 };
