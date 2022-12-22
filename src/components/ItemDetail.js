@@ -14,7 +14,6 @@ const ItemDetail = ({item}) => {
   const {addItem, productsAdded} = useContext(CartContext);
   const [itemCounter, setItemCounter] = useState(0)
   const [stock, setStock] = useState(item.stock)
-  const [cartCounter, setCartCounter] = useState(0)
   const img = useGetItemImg(item.img);
 
   function handlePlus () {
@@ -41,7 +40,6 @@ const ItemDetail = ({item}) => {
       alert("No Hay Stock")
     } else {
       addItem(item, itemCounter);
-      setCartCounter(cartCounter => cartCounter + itemCounter)
       setStock(stock-itemCounter)
       setItemCounter(0)
     };
