@@ -4,6 +4,7 @@ import App from '../App';
 import CategoryView from "../views/category";
 import ItemView from '../views/item';
 import CartView from "../views/cart";
+import CheckoutView from "../views/checkout";
 
 export const router = createBrowserRouter ([
     {
@@ -21,6 +22,10 @@ export const router = createBrowserRouter ([
     {
         path: '/cart/',
         element: <CartView />
+    },
+    {
+        path: '/checkout/',
+        element: <CheckoutView />
     }
 
 

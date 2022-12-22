@@ -6,14 +6,12 @@ export const CartContextProvider = ({children}) => {
     const [productsAdded, setProductsAdded] = useState([]);
     const [totalAmount, setTotalAmount] = useState(0);
 
-    useEffect(
-        ()=> {
-            const amount = productsAdded
-            .map( (product)=> parseInt(product.item.price)*product.quantity)
-            .reduce((partialSum, a)=> partialSum + a, 0);
-            setTotalAmount(amount);
-            },[productsAdded]
-        )
+    useEffect(() => {
+        const amount = productsAdded
+          .map((product) => parseInt(product.item.price) * product.quantityAdded)
+          .reduce((partialSum, a) => partialSum + a, 0);
+        setTotalAmount(amount);
+      }, [productsAdded]);
 
 
     function addItem(item, quantity) {
